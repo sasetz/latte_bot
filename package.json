@@ -1,0 +1,15 @@
+{
+  "name": "latte_bot",
+  "version": "1.0.0",
+  "description": "A prototype bot for the Latte scanlate team Discord server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sasetz/latte_bot"
+  },
+  "author": "Sasetz",
+  "license": "MIT"
+}
