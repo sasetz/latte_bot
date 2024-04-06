@@ -4,12 +4,17 @@
   "description": "A prototype bot for the Latte scanlate team Discord server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "debug": "node src",
+    "deploy_commands": "node src/deploy-commands.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/sasetz/latte_bot"
   },
   "author": "Sasetz",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5"
+  }
 }
