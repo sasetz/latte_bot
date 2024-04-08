@@ -46,3 +46,11 @@ for (const file of eventFiles) {
 // Log in to Discord with your client's token
 client.login(token);
 
+// TODO: commands
+// 1. interval - sets the timer of update checks
+// 2. channel - set channel name for pings
+// 3. mention - assigns a ping role to specified title
+// 4. refresh - manually check for updates
+//
+// TODO: add migrate action
+

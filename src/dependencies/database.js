@@ -17,8 +17,10 @@ if (dbType == "local") {
     database = new Sequelize(`postgres://${dbUsername}:${dbPassword}@${dbHost}:${dbPort}/${dbName}`)
 } else if (dbType === undefined || dbType === null) {
     console.error("Database type not provided!");
+    process.exit(1);
 } else {
     console.error("Unknown database type provided!");
+    process.exit(1);
 }
 
 module.exports = database;
