@@ -19,24 +19,28 @@ module.exports = {
         if (interaction.isAutocomplete()) {
             try {
                 await command.autocomplete(interaction);
-            } catch (error) {
-                console.error("Error while autocompleting!", error);
             }
-        } else {
+            catch (error) {
+                console.error('Error while autocompleting!', error);
+            }
+        }
+        else {
             try {
                 await command.execute(interaction);
-            } catch (error) {
+            }
+            catch (error) {
                 console.error(error);
                 const response = {
                     content: 'Упс! Произошла ошибка при выполнении команды.',
-                    ephemeral: true
+                    ephemeral: true,
                 };
                 if (interaction.replied || interaction.deferred) {
                     await interaction.followUp(response);
-                } else {
+                }
+                else {
                     await interaction.reply(response);
                 }
             }
         }
-    }
-}
+    },
+};

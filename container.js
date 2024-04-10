@@ -10,7 +10,7 @@ for (const file of dependencyFiles) {
     const filePath = path.join(dependencyPath, file);
     const dependency = require(filePath);
     const dependencyName = file.replace(/\.js$/, '');
-    
+
     if (dependency === undefined || dependency === null) {
         console.error(`There was an error loading module ${dependencyName}. Exiting`);
         process.exit(1);

@@ -5,6 +5,6 @@ module.exports = {
         .setName('user')
         .setDescription('Reports information about the user.'),
     async execute(interaction) {
-        await interaction.reply(`This command was executed by ${interaction.user.username}, on ${interaction.createdAt.toString()}`)
+        await interaction.reply(`This command was executed by ${interaction.user.username}, on ${interaction.createdAt.toString()}`);
     },
 };

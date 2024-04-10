@@ -1,8 +1,6 @@
 const { SlashCommandBuilder, ChannelType } = require('discord.js');
 const container = require('../../container.js');
 const Team = container.database.model('team');
-const Title = container.database.model('title');
-const Chapter = container.database.model('chapter');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -13,21 +11,23 @@ module.exports = {
                 .setDescription('Название команды на Мангалибе')
                 .setRequired(true)
                 .setAutocomplete(true))
-        .addChannelOption(option => 
+        .addChannelOption(option =>
             option.setName('канал')
                 .setDescription('Канал, куда будут отправляться уведомления о главах. По умолчанию: этот канал')
-                .addChannelTypes(ChannelType.GuildText)
+                .addChannelTypes(ChannelType.GuildText),
         )
         .addIntegerOption(option =>
             option.setName('интервал')
-                .setDescription('Время (в минутах), за которое будет проверяться Мангалиб. По умолчанию: 5 минут')
+                .setDescription('Время (в минутах), за которое будет проверяться Мангалиб. По умолчанию: 5 минут'),
         ),
     async execute(interaction) {
         const teamId = interaction.options.getString('команда');
         const channel = interaction.options.getChannel('канал') ?? interaction.channel;
         const timer = interaction.options.getInteger('интервал') ?? 5;
 
-        if (typeof teamId !== 'numeric') {
+        // TODO: check if the team id is numeric
+        // if it is, it's an id, otherwise it's a title
+        if (typeof teamId !== Number) {
             console.log('==============================================');
         }
 
@@ -42,7 +42,7 @@ module.exports = {
                 throw error;
             });
         const data = teamReply.data.data;
-        // TODO: submit issue to sequelize, since findOrCreate does not 
+        // TODO: submit issue to sequelize, since findOrCreate does not
         // provide methods for saving (at all)
 
         let storedTeam = await Team.findOne({
@@ -81,15 +81,15 @@ module.exports = {
                 q: focusedValue,
             },
         })
-        .catch(async error => {
-            console.log(error);
-            await interaction.respond([{name: 'Ошибка получения команд из Мангалиба. Попробуйте позже.', value: 'null'}]);
-        });
+            .catch(async error => {
+                console.log(error);
+                await interaction.respond([{ name: 'Ошибка получения команд из Мангалиба. Попробуйте позже.', value: 'null' }]);
+            });
 
         const filteredOptions = queryResult.data.data.map(team => ({ name: team.name, value: team.id.toString() }));
-        console.log(filteredOptions)
+        console.log(filteredOptions);
         await interaction.respond(
             filteredOptions,
-        )
+        );
     },
 };

@@ -1,5 +1,4 @@
 module.exports = async (team, database, network) => {
-    const Team = database.model('team');
     const Title = database.model('title');
     const Chapter = database.model('chapter');
 
@@ -38,10 +37,11 @@ module.exports = async (team, database, network) => {
 
                 if (storedTitle == null) {
                     await Title.create(titlePayload);
-                } else {
+                }
+                else {
                     await storedTitle.update(titlePayload);
                 }
-            })
+            }),
         );
     }
     await Promise.all(promises);
@@ -79,11 +79,12 @@ module.exports = async (team, database, network) => {
 
                 if (storedChapter == null) {
                     await Chapter.create(chapterPayload);
-                } else {
+                }
+                else {
                     await storedChapter.update(chapterPayload);
                 }
-            })
+            }),
         );
     }
     await Promise.all(promises);
-}
+};

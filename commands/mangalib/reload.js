@@ -11,7 +11,7 @@ module.exports = {
         const team = await Team.findOne({ where: { serverId: serverId } });
         if (team == null) {
             interaction.reply({
-                content: 'Сначала запустите /setup, чтобы можно было обновить базу данных.',
+                content: 'Сначала запустите /setup, чтобы установить бота.',
                 ephemeral: true,
             });
             return;
@@ -38,4 +38,4 @@ module.exports = {
             ephemeral: true,
         });
     },
-}
+};
